@@ -22,5 +22,8 @@
   "homepage": "https://github.com/JulioRios15/Cultural-Eats#readme",
   "devDependencies": {
     "concurrently": "^7.0.0"
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.3.2"
   }
 }

@@ -1,22 +1,23 @@
-import express from 'express';
-import { ApolloServer } from 'apollo-server-express';
-import { connectToDb } from './utils/connection.js';
-import config from 'config';
-import dotenv from 'dotenv';
-dotenv.config();
+const express = require('express');
+const { ApolloServer } = require('apollo-server-express');
+const path = require('path');
+const db = require('./config/connection');
+const configVars = require('./config/vars');
 
 
-const port = config.get("port") || 3001;
+const port = configVars.port;
 const app = express();
-
-const server = new ApolloServer();
-server.applyMiddleware({app});
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.listen(port, async () => {
-    await connectToDb();
-    console.log(`server running on: http://localhost:${port}`)
-    console.log(`use graphql at: http://localhost:${port}${server.graphqlPath}`);
-})
+// if we're in production, serve client/build as static assets
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+}
+
+db.once('open', () => {
+  app.listen(port, () => {
+    console.log(`API server running on port ${port}!`);
+  });
+});

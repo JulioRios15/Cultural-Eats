@@ -1,5 +1,5 @@
 import React from "react";
-const Modal = props => {
+const SignIn = props => {
     if (!props.show) {
         return null
     }
@@ -12,7 +12,10 @@ const Modal = props => {
                     </h4>
                 </div>
                 <div className="modal-body">
-                    Username Password
+                    Username
+                </div>
+                <div className="modal-body">
+                    Password
                 </div>
                 <div className="modal-footer">
                     <button className="button">
@@ -26,4 +29,4 @@ const Modal = props => {
         </div>
     )
 }
-export default Modal
+export default SignIn

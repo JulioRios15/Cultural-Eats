@@ -1,5 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
+import Categories from './components/Categories/Categories';
+import RandomMeal from './components/RandomMeal/RandomMeal';
+
 
 function App() {
   return (
@@ -9,12 +12,17 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
+        <a>
+        <Switch>
+        <Route exact path="/" component={HomePage}/>
+        <Route exact path="/categories" component={Categories}/>
+        <Route exact path="/random" component={RandomMeal}/>
+      </Switch>
           className="App-link"
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
-        >
+        
           Learn React
         </a>
       </header>

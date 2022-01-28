@@ -11,6 +11,7 @@ const SignUp = props => {
                         Sign-in
                     </h4>
                 </div>
+            
                 <div className="modal-body">
                     Username
                 </div>
@@ -20,7 +21,7 @@ const SignUp = props => {
                 <div className="modal-body">
                     Password
                 </div>
-                <div className="modal-body">
+                <div className="modal-cult">
                 <input type="checkbox" id="American"/>
                 <label for="American">American</label><br/>
                 <input type="checkbox" id="British"/>

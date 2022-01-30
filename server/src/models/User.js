@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const mealSchema = require('./Meal');
 const bcrypt = require('bcrypt');
+const config = require('../config/vars');
 
 const userSchema = new Schema(
     {
@@ -19,7 +21,8 @@ const userSchema = new Schema(
       type: String,
       required: true,
       minlength: 5
-    }
+    },
+    meals: [mealSchema]
   },
   {
       timestamps: true,
@@ -35,7 +38,7 @@ const userSchema = new Schema(
   // hash password on pre-save
 userSchema.pre('save', async function(next) {
     if (this.isNew || this.isModified('password')) {
-      const saltRounds = 10;
+      const saltRounds = config.saltWorkFactor;
       this.password = await bcrypt.hash(this.password, saltRounds);
     }
   

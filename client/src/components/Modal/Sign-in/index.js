@@ -11,9 +11,9 @@ const SignIn = props => {
                         Sign-in
                     </h4>
                 </div>
-                <div className="modal-body">
+                <form className="modal-body">
                     Username
-                </div>
+                </form>
                 <div className="modal-body">
                     Password
                 </div>

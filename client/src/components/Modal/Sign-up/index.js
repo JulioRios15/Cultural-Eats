@@ -1,5 +1,5 @@
 import React from "react";
-const SignUp = props => {
+export default function SignUp (props) {
     if (!props.show) {
         return null
     }
@@ -13,7 +13,10 @@ const SignUp = props => {
                 </div>
             
                 <div className="modal-body">
-                    Username
+                    <form>
+                    <input  className="input"
+          type="text" />
+                    </form>
                 </div>
                 <div className="modal-body">
                     Email
@@ -83,4 +86,3 @@ const SignUp = props => {
         </div>
     )
 }
-export default SignUp

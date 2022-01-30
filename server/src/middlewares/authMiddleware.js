@@ -1,5 +1,4 @@
-const config = require('../config/vars');
-
+const { verifyToken } = require("../utils/jwt.utils");
 
 function authMiddleware({req, res, next}){
     let token = req.body.token || req.query.token || req.headers["authorization"] || req.headers["Authorization"];
@@ -13,13 +12,14 @@ function authMiddleware({req, res, next}){
     }
 
     try {
-        const publicKey = config.tokenPublicKey;
-        const expiredTime = config.tokenTtl;
-        const { data } = jwt.verify(token, publicKey, { maxAge: expiredTime });
+        const { data } = verifyToken(token);
         req.user = data;
     } catch (error) {
+        console.log(error.message);
         console.log("Invalid Token");
     }
+
+    return req;
 }
 
 module.exports = authMiddleware

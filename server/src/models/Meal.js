@@ -1,4 +1,5 @@
 const { Schema } = require('mongoose');
+const {getMealData} = require("../utils/meal.utils");
 
 const mealSchema = new Schema(
     {
@@ -30,6 +31,9 @@ const mealSchema = new Schema(
         },
         strSource: {
             type: String,
+        },
+        strMealThumb: {
+            type: String
         },
         strIngredient1: {
             type: String
@@ -159,20 +163,8 @@ const mealSchema = new Schema(
 )
 
 mealSchema.virtual("mealData").get(function(){
-    let mealData = [];
-    for (let i = 0; i < 20; i++) {
-        const ingredient =  this.get(`strIngredient${i + 1}`);
-        const measure =  this.get(`strMeasure${i + 1}`);
-        if(ingredient !== "" && measure !== ""){
-            mealData.push({
-                ingredient,
-                measure
-            })
-        }    
-    }
-
-    return mealData
-})
+    return getMealData(this);
+});
 
 
 module.exports = mealSchema;

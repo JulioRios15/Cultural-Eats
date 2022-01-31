@@ -3,6 +3,7 @@ const { User } = require('../models');
 const { signToken } = require("../utils/jwt.utils");
 const axios = require("axios").default;
 const { encodeQueryData } = require("../utils/dataQuery");
+const { getMealData } = require('../utils/meal.utils');
 const config = require('../config/vars');
 const mealDbApiKey = config.mealDBApiKey;
 
@@ -75,6 +76,21 @@ const resolvers = {
 
         } catch (error) {
           throw new ApolloError("Unable to filter meals");
+        }
+      },
+      meal: async(parent, {idMeal}) =>{
+        try {
+          const url = `http://themealdb.com/api/json/v1/${mealDbApiKey}/lookup.php?i=${idMeal}`;
+          const response = await axios.get(url);
+          const meal = response.data.meals[0];
+
+          return {
+            ...meal,
+            mealData: getMealData(meal)
+          }
+
+        } catch (error) {
+          new ApolloError("Unable to find meal")
         }
       }
     },

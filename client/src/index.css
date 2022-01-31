@@ -50,6 +50,7 @@ a {
   padding: 10px;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
-  max-height: 200px;
-  overflow-y: auto;
+  max-height: 20vh;
+  overflow-y: scroll;
+  text-align: left;
 }

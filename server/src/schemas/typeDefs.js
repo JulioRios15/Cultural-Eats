@@ -23,6 +23,7 @@ const typeDefs = gql`
     strTags: String
     strYoutube: String
     strSource: String
+    strMealThumb: String
     mealData: [MealData]
   }
 
@@ -50,7 +51,8 @@ const typeDefs = gql`
     me: User
     area: [Area]
     category: [Category]
-    mealShort(a: String, c: String): [MealShort]
+    mealShort(a: String, c: String i: String): [MealShort]
+    meal(idMeal: String!): Meal
   }
 
   type Mutation {

@@ -3,7 +3,7 @@ const { User } = require('../models');
 const { signToken } = require("../utils/jwt.utils");
 const axios = require("axios").default;
 const { encodeQueryData } = require("../utils/dataQuery");
-const { getMealData } = require('../utils/meal.utils');
+const { getMealData, getMealInstrunctions } = require('../utils/meal.utils');
 const config = require('../config/vars');
 const mealDbApiKey = config.mealDBApiKey;
 
@@ -86,7 +86,8 @@ const resolvers = {
 
           return {
             ...meal,
-            mealData: getMealData(meal)
+            mealData: getMealData(meal),
+            instructions: getMealInstrunctions(meal)
           }
 
         } catch (error) {

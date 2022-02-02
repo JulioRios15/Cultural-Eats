@@ -15,33 +15,11 @@ import styled from 'styled-components';
 import Homepage from "./pages/HomePage";
 import Recipes from "./pages/Recipes";
 import SavedRecipes from "./pages/SavedRecipes";
-
-import { setContext } from '@apollo/client/link/context'
-
-
-const httpLink = createHttpLink({
-  uri: '/graphql',
-});
-
-const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token');
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : '',
-    },
-  };
-});
-
-const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
-});
+import SignupForm from "./components/Modal/Sign-up"
+import LoginForm from "./components/Modal/Sign-in"
 
 export default function App() {
-
   return (
-    <ApolloProvider client={client}>
       <BrowserRouter>
         <StyledApp className="App">
           <StyledNavbarWrapper>
@@ -52,11 +30,12 @@ export default function App() {
                 <Route path="/" element={Homepage()}/>
                 <Route path="/Recipes" element={Recipes()}/>
                 <Route path="/Saved-Recipes" element={SavedRecipes()}/>
+                <Route path="/Sign-Up" element={SignupForm()}/>
+                <Route path="/Sign-In" element={LoginForm()}/>
             </Routes>
           </StyledContentWrapper>
         </StyledApp>
       </BrowserRouter>
-    </ApolloProvider>
   );
 }
 

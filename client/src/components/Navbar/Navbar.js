@@ -11,10 +11,11 @@ export default function Navibar() {
           </NavLink>
             <Nav className="me-auto">
               <Nav.Link activeClassName="active" as={NavLink} to="/Recipes">Recipes</Nav.Link>
-              <NavLink activeClassName="active" as={NavLink} to="/Saved-Recipes">Saved Recipes</NavLink>
-              <NavLink activeClassName="active" as={NavLink} to="/Grocery-Cart">Grocery Cart</NavLink>
-              <NavLink activeClassName="active" as={NavLink} to="/AuthPage">AuthPage</NavLink>
-            </Nav>           
+              <NavLink activeClassName="active" to="/Saved-Recipes">Saved Recipes</NavLink>
+              <NavLink activeClassName="active" to="/Filter">Filter</NavLink>
+              <NavLink activeClassName="active" to="/Sign-in">Sign In</NavLink>
+              <NavLink activeClassName="active" to="/Sign-up">Sign Up</NavLink>
+            </Nav>         
       </Container>
     </Navbar>  
   );

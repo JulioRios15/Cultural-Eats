@@ -8,7 +8,7 @@ const SignIn = props => {
             <div className="modal-content">
                 <div className="modal-header">
                     <h4 classname="modal-title">
-                        Sign-in
+                        Sign-in 
                     </h4>
                 </div>
                 <form className="modal-body">
@@ -19,10 +19,10 @@ const SignIn = props => {
                 </div>
                 <div className="modal-footer">
                     <button className="button">
-                        Sign In
+                        Sign In 
                     </button>
                     <button onClick={props.onClose} className="button">
-                        close
+                        Close
                     </button>
                 </div>
             </div>

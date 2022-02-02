@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import './App.css';
 import Navbar from './components/Navbar/Navbar'
-import SignIn from './components/Modal/Sign-in'
-import SignUp from './components/Modal/Sign-up'
+//import SignIn from './components/Modal/Sign-in'
+//import SignUp from './components/Modal/Sign-up'
 import {
   ApolloClient,
   InMemoryCache,
@@ -40,12 +40,15 @@ export default function App() {
     <ApolloProvider client={client}>
     <div className="App">
        <Navbar></Navbar>
-       <button onClick={() => setShowSignIn(true)}>Sign-in</button>
+       {/* <button onClick={() => setShowSignIn(true)}>Sign-in</button>
        <button onClick={() => setShowSignUp(true)}>Sign-up</button>
        <SignIn onClose={() => setShowSignIn(false)} show={showSignIn} />
-       <SignUp onClose={() => setShowSignUp(false)} show={showSignUp} />
+       <SignUp onClose={() => setShowSignUp(false)} show={showSignUp} /> */}
     </div>
     </ApolloProvider>
   );
 }
 
+// document.querySelector('.img__btn').addEventListener('click', function() {
+//   document.querySelector('.cont').classList.toggle('s--signup');
+// });

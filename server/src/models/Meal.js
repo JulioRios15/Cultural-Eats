@@ -1,5 +1,5 @@
 const { Schema } = require('mongoose');
-const {getMealData} = require("../utils/meal.utils");
+const {getMealData, getMealInstrunctions} = require("../utils/meal.utils");
 
 const mealSchema = new Schema(
     {
@@ -164,6 +164,10 @@ const mealSchema = new Schema(
 
 mealSchema.virtual("mealData").get(function(){
     return getMealData(this);
+});
+
+mealSchema.virtual("instructions").get(function(){
+    return getMealInstrunctions(this);
 });
 
 

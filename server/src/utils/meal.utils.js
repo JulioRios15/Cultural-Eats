@@ -15,4 +15,9 @@ function getMealData(meal){
     return mealData;
 }
 
-module.exports = { getMealData}
+function getMealInstrunctions(meal){
+    const instructions = meal.strInstructions.split('\r\n');
+    return instructions;
+}
+
+module.exports = { getMealData, getMealInstrunctions}

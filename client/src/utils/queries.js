@@ -1,8 +1,43 @@
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
+
+export const QUERY_ME = gql`
+  {
+    me {
+      _id
+      username
+      email
+      meals {
+        idMeal
+        strMeal
+        strArea
+        strCategory
+        strInstructions
+        strTags
+        strDrinkAlternate
+        strYoutube
+        strSource
+        strMealThumb
+		    instructions
+        mealData {
+          ingredient
+          measure
+        }
+      }
+    }
+  }
+`;
 
 export const QUERY_AREA = gql`
   {
     area {
+      name
+    }
+  }
+`;
+
+export const QUERY_CATEGORY = gql`
+  {
+    category {
       name
     }
   }
@@ -20,7 +55,8 @@ export const QUERY_MEAL = gql`
       strYoutube
       strSource
       strTags
-	  strMealThumb
+	    strMealThumb
+	    instructions
       mealData {
         ingredient
         measure
@@ -62,7 +98,6 @@ export const QUERY_ME = gql`
     }
   }
 `;
-
 export const QUERY_MEAL_SHORT = gql`
   query getMealShort($a: String, $c: String, $i: String) {
     mealShort(a: $a, c: $c, i: $i) {
@@ -71,4 +106,4 @@ export const QUERY_MEAL_SHORT = gql`
       idMeal
     }
   }
-`
+`;

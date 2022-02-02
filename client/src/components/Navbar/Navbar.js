@@ -1,18 +1,17 @@
 import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
-import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
 import Homepage from "../../pages/HomePage";
 import Recipes from "../../pages/Recipes";
 import SavedRecipes from "../../pages/SavedRecipes";
 import SignIn from "../../pages/SignIn";
 import SignUp from "../../pages/SignUp";
 import Filter from "../../pages/Filter"
+import { NavLink } from "react-router-dom";
 
 export default function Navibar() {
   return (
-    <Navbar>
+    <Navbar expand="lg">
       <Container>
-        <BrowserRouter>
           <NavLink activeClass="active" to="/">
             Cultural-Eats
           </NavLink>
@@ -32,7 +31,11 @@ export default function Navibar() {
               <Route path="/Sign-up" element={SignUp()}/>
             </Routes>
         </BrowserRouter>
+              <NavLink activeClassName="active" as={NavLink} to="/Saved-Recipes">Saved Recipes</NavLink>
+              <NavLink activeClassName="active" as={NavLink} to="/Grocery-Cart">Grocery Cart</NavLink>
+              <NavLink activeClassName="active" as={NavLink} to="/AuthPage">AuthPage</NavLink>
+            </Nav>           
       </Container>
-    </Navbar>
+    </Navbar>  
   );
 }

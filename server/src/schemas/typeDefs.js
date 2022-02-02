@@ -25,6 +25,7 @@ const typeDefs = gql`
     strSource: String
     strMealThumb: String
     mealData: [MealData]
+    instructions: [String]
   }
 
   type Auth {

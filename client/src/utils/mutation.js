@@ -42,7 +42,7 @@ export const SAVE_MEAL = gql`
         strTags
         strYoutube
         strSource
-		strMealThumb
+		    strMealThumb
         mealData {
           ingredient
           measure
@@ -68,7 +68,7 @@ export const REMOVE_MEAL = gql`
         strTags
         strYoutube
         strSource
-		strMealThumb
+		    strMealThumb
         mealData {
           ingredient
           measure  

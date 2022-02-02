@@ -15,8 +15,6 @@ import styled from 'styled-components';
 import Homepage from "./pages/HomePage";
 import Recipes from "./pages/Recipes";
 import SavedRecipes from "./pages/SavedRecipes";
-import GroceryCart from "./pages/GroceryCart";
-import AuthPage from "./pages/AuthPage";
 
 import { setContext } from '@apollo/client/link/context'
 
@@ -41,8 +39,6 @@ const client = new ApolloClient({
 });
 
 export default function App() {
-  const [showSignIn, setShowSignIn] = useState(false)
-  const [showSignUp, setShowSignUp] = useState(false)
 
   return (
     <ApolloProvider client={client}>
@@ -56,8 +52,6 @@ export default function App() {
                 <Route path="/" element={Homepage()}/>
                 <Route path="/Recipes" element={Recipes()}/>
                 <Route path="/Saved-Recipes" element={SavedRecipes()}/>
-                <Route path="/Grocery-Cart" element={GroceryCart()}/>
-                <Route path="/AuthPage" element={AuthPage()}/>
             </Routes>
           </StyledContentWrapper>
         </StyledApp>

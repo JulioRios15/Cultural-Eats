@@ -1,51 +1,45 @@
-import React, { useState } from "react"
-import './App.css';
-import Navbar from './components/Navbar/Navbar'
-import SignIn from './components/Modal/Sign-in'
-import SignUp from './components/Modal/Sign-up'
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context'
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
 
+//Components
+import Navbar from "./components/Navbar/Navbar";
+import styled from "styled-components";
 
-const httpLink = createHttpLink({
-  uri: '/graphql',
-});
-
-const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token');
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : '',
-    },
-  };
-});
-
-const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
-});
+//Pages
+import SavedRecipes from "./pages/SavedRecipes";
+import SignupForm from "./components/Modal/Sign-up";
+import LoginForm from "./components/Modal/Sign-in";
+import Filter from "./pages/Filter";
+import Landing from "./pages/Landing";
+import RecipeDetails from './pages/RecipeDetails';
 
 export default function App() {
-  const [showSignIn, setShowSignIn] = useState(false)
-  const [showSignUp, setShowSignUp] = useState(false)
-  
-
   return (
-    <ApolloProvider client={client}>
-    <div className="App">
-       <Navbar></Navbar>
-       <button onClick={() => setShowSignIn(true)}>Sign-in</button>
-       <button onClick={() => setShowSignUp(true)}>Sign-up</button>
-       <SignIn onClose={() => setShowSignIn(false)} show={showSignIn} />
-       <SignUp onClose={() => setShowSignUp(false)} show={showSignUp} />
-    </div>
-    </ApolloProvider>
+    <BrowserRouter>
+      <StyledApp className="App">
+        <StyledNavbarWrapper>
+          <Navbar />
+        </StyledNavbarWrapper>
+        <StyledContentWrapper>
+          <Routes>
+            <Route path="/" element={<Landing/>} />
+            <Route path="/Saved-Recipes" element={<SavedRecipes/>} />
+            <Route path="/Recipes" element={<Filter/>} />
+            <Route path="Recipes/:idMeal" element={<RecipeDetails/>} />
+            <Route path="/Sign-Up" element={<SignupForm/>} />
+            <Route path="/Sign-In" element={<LoginForm/>} />
+          </Routes>
+        </StyledContentWrapper>
+      </StyledApp>
+    </BrowserRouter>
   );
 }
 
+const StyledApp = styled.div``;
+
+const StyledNavbarWrapper = styled.div`
+  width: 100%;
+`;
+
+const StyledContentWrapper = styled.div``;

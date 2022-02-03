@@ -1,41 +1,4 @@
-import gql from 'graphql-tag';
-
-export const QUERY_AREA = gql`
-  {
-    area {
-      name
-    }
-  }
-`;
-
-export const QUERY_MEAL = gql`
-  query getMeal($idMeal: String!) {
-    meal(idMeal: $idMeal) {
-      idMeal
-      strMeal
-      strArea
-      strCategory
-      strInstructions
-      strDrinkAlternate
-      strYoutube
-      strSource
-      strTags
-	  strMealThumb
-      mealData {
-        ingredient
-        measure
-      }
-    }
-  }
-`;
-
-export const QUERY_CATEGORY = gql`
-{
-  category {
-      name
-    }
-  }
-`;
+import { gql } from "@apollo/client";
 
 export const QUERY_ME = gql`
   {
@@ -54,10 +17,49 @@ export const QUERY_ME = gql`
         strYoutube
         strSource
         strMealThumb
+        instructions
         mealData {
           ingredient
           measure
         }
+      }
+    }
+  }
+`;
+
+export const QUERY_AREA = gql`
+  {
+    area {
+      name
+    }
+  }
+`;
+
+export const QUERY_CATEGORY = gql`
+  {
+    category {
+      name
+    }
+  }
+`;
+
+export const QUERY_MEAL = gql`
+  query getMeal($idMeal: String!) {
+    meal(idMeal: $idMeal) {
+      idMeal
+      strMeal
+      strArea
+      strCategory
+      strInstructions
+      strDrinkAlternate
+      strYoutube
+      strSource
+      strTags
+      strMealThumb
+      instructions
+      mealData {
+        ingredient
+        measure
       }
     }
   }
@@ -71,4 +73,4 @@ export const QUERY_MEAL_SHORT = gql`
       idMeal
     }
   }
-`
+`;

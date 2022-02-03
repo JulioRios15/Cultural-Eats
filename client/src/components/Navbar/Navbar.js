@@ -1,38 +1,64 @@
-import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
-import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
-import Homepage from "../../pages/HomePage";
-import Recipes from "../../pages/Recipes";
-import SavedRecipes from "../../pages/SavedRecipes";
-import SignIn from "../../pages/SignIn";
-import SignUp from "../../pages/SignUp";
-import Filter from "../../pages/Filter"
-
+import React, { useState } from "react";
+import { Navbar, Container, Nav, Button, ToggleButton } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import Authservice from "../../utils/auth"
+import styled from "styled-components"
 export default function Navibar() {
+  function handleLogout(e){
+    e.preventDefault()
+    Authservice.logout()
+  }
   return (
-    <Navbar>
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <BrowserRouter>
-          <NavLink activeClass="active" to="/">
-            Cultural-Eats
-          </NavLink>
-            <Nav className="me-auto">
-              <Nav.Link activeClassName="active" as={NavLink} to="/Recipes">Recipes</Nav.Link>
-              <NavLink activeClassName="active" to="/Saved-Recipes">Saved Recipes</NavLink>
-              <NavLink activeClassName="active" to="/Filter">Filter</NavLink>
-              <NavLink activeClassName="active" to="/Sign-in">Sign In</NavLink>
-              <NavLink activeClassName="active" to="/Sign-up">Sign Up</NavLink>
-            </Nav>
-          <Routes>
-              <Route path="/" element={Homepage()}/>
-              <Route path="/Recipes" element={Recipes()}/>
-              <Route path="/Saved-Recipes" element={SavedRecipes()}/>
-              <Route path="/Filter" element={Filter()}/>
-              <Route path="/Sign-in" element={SignIn()}/>
-              <Route path="/Sign-up" element={SignUp()}/>
-            </Routes>
-        </BrowserRouter>
+        <Navbar.Brand as={NavLink} to="/">
+          Cultural-Eats
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link to="/Recipes" as={NavLink}>
+              Recipes
+            </Nav.Link>
+            <Nav.Link to="/Saved-Recipes" as={NavLink}>
+              Saved-Recipes
+            </Nav.Link>
+            {Authservice.loggedIn() 
+
+            ? (<Nav.Link as={LogoutBtn} onClick={handleLogout}>Logout</Nav.Link>) 
+            : (<>   <Nav.Link to="/Sign-in" as={NavLink}>
+              Sign-in
+            </Nav.Link>
+            <Nav.Link to="/Sign-up" as={NavLink}>
+              Sign Up
+            </Nav.Link></>)}
+          </Nav>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );
 }
+
+const LogoutBtn = styled.button `
+display:inline-block;
+padding:0 auto;
+border:none;
+margin:0 0.3em 0.3em 0;
+border-radius:0.12em;
+box-sizing: border-box;
+text-decoration:none;
+font-family:'Roboto',sans-serif;
+font-weight:300;
+text-align:center;
+transition: all 0.2s;
+width: 5em;
+}
+:hover{
+color:#000000;
+background-color:#808080;
+}
+@media all and (max-width:10em){
+a.button1{
+display:block;
+margin:0.4em auto;}
+`

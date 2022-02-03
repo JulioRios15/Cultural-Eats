@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 export const ADD_USER = gql`
   mutation addUser($username: String!, $email: String!, $password: String!) {
@@ -40,10 +40,10 @@ export const REMOVE_MEAL = gql`
         strTags
         strYoutube
         strSource
-		    strMealThumb
+        strMealThumb
         mealData {
           ingredient
-          measure  
+          measure
         }
       }
     }
@@ -65,7 +65,7 @@ export const SAVE_MEAL = gql`
         strTags
         strYoutube
         strSource
-		    strMealThumb
+        strMealThumb
         mealData {
           ingredient
           measure

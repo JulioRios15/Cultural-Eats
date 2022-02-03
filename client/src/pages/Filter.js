@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { QUERY_AREA, QUERY_CATEGORY, QUERY_MEAL_SHORT } from "../utils/queries";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import {
@@ -13,6 +14,8 @@ import {
 } from "react-bootstrap";
 import Auth from "../utils/auth";
 export default function Filter() {
+  let navigate = useNavigate();
+
   const [areaData, setAreaData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
   const [mealShortData, setMealShortData] = useState([]);
@@ -56,6 +59,11 @@ export default function Filter() {
     setCultureSelect(cultureSelect);
     setCategorySelect(categorySelect);
   }
+
+  function handleViewMealDetails(idMeal){
+    navigate(`/Recipes/${idMeal}`);
+  }
+
   const token = Auth.loggedIn() ? Auth.getToken() : null;
 
   return (
@@ -108,8 +116,8 @@ export default function Filter() {
                   <Card.Img variant="top" src={item.image} />
                   <Card.Body>
                     <Card.Title>{item.name}</Card.Title>
-                    <Button value={item.idMeal} variant="primary">
-                      Go somewhere
+                    <Button value={item.idMeal} variant="primary" onClick={() => handleViewMealDetails(item.idMeal)}>
+                      View Details
                     </Button>
                   </Card.Body>
                 </Card>

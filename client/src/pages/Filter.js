@@ -13,20 +13,21 @@ import {
 } from "react-bootstrap";
 import Auth from "../utils/auth";
 export default function Filter() {
-  var cultureSelect = "";
-  var categorySelect = "";
-
+  const [areaData, setAreaData] = useState([]);
+  const [categoryData, setCategoryData] = useState([]);
+  const [mealShortData, setMealShortData] = useState([]);
+  const [cultureSelect, setCultureSelect] = useState("American");
+  const [categorySelect, setCategorySelect] = useState("Beef");
+  
   const { loading: queryAreaLoading, data: queryAreaData } =
     useQuery(QUERY_AREA);
   const { loading: queryCategoryLoading, data: queryCategoryData } =
     useQuery(QUERY_CATEGORY);
   const { loading: queryMealShortLoading, data: queryMealShortData } = useQuery(
     QUERY_MEAL_SHORT,
-    { variables: { a: `American`, c: `Beef` } }
+    { variables: { a: cultureSelect, c: categorySelect } }
   );
-  const [areaData, setAreaData] = useState([]);
-  const [categoryData, setCategoryData] = useState([]);
-  const [mealShortData, setMealShortData] = useState([]);
+
   useEffect(() => {
     if (queryAreaData) {
       setAreaData(queryAreaData.area);
@@ -37,7 +38,6 @@ export default function Filter() {
     if (queryMealShortData) {
       setMealShortData(queryMealShortData.mealShort);
     }
-    console.log(queryMealShortData);
   }, [
     queryAreaData,
     queryAreaLoading,
@@ -45,17 +45,22 @@ export default function Filter() {
     queryCategoryData,
     queryMealShortData,
     queryMealShortLoading,
+    categorySelect,
+    cultureSelect
   ]);
-  function handleSearch() {
+  function handleSearch(e) {
+    e.preventDefault();
     var cultureSelect = document.querySelector(".cultureSelect").value;
     var categorySelect = document.querySelector(".categorySelect").value;
     console.log(cultureSelect, categorySelect);
+    setCultureSelect(cultureSelect);
+    setCategorySelect(categorySelect);
   }
   const token = Auth.loggedIn() ? Auth.getToken() : null;
 
   return (
     <div>
-      <Form as={DropdownButton} onSubmit={handleSearch}>
+      <Form onSubmit={handleSearch}>
         <Form.Group controlId="formBasicSelect">
           <Form.Label>Select Your Culture</Form.Label>
           <Form.Control

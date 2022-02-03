@@ -54,3 +54,8 @@ a {
   overflow-y: scroll;
   text-align: left;
 }
+
+.landing {
+  background-image: url(../../client/public/landingBG.jpg);
+  height: 100vh;
+}

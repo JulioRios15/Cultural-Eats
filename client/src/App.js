@@ -24,6 +24,7 @@ import SavedRecipes from "./pages/SavedRecipes";
 import SignupForm from "./components/Modal/Sign-up";
 import LoginForm from "./components/Modal/Sign-in";
 import Filter from "./pages/Filter";
+import Landing from "./pages/Landing";
 
 export default function App() {
   return (
@@ -34,7 +35,7 @@ export default function App() {
         </StyledNavbarWrapper>
         <StyledContentWrapper>
           <Routes>
-            <Route path="/" element={Filter()} />
+            <Route path="/" element={Landing()} />
             <Route path="/Saved-Recipes" element={SavedRecipes()} />
             <Route path="/Recipes" element={Filter()} />
             <Route path="/Sign-Up" element={SignupForm()} />

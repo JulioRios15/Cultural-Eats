@@ -59,7 +59,8 @@ export default function Filter() {
   const token = Auth.loggedIn() ? Auth.getToken() : null;
 
   return (
-    <div>
+    <body className="recipePage">
+      <DropdownButton>
       <Form onSubmit={handleSearch}>
         <Form.Group controlId="formBasicSelect">
           <Form.Label>Select Your Culture</Form.Label>
@@ -97,12 +98,13 @@ export default function Filter() {
           Submit
         </Button>
       </Form>
+      </DropdownButton>
       <Container>
         <Row>
           {mealShortData.map((item, index) => {
             return (
               <Col>
-                <Card key={index} style={{ width: "18rem" }}>
+                <Card Name="cardPad" key={index} style={{ width: "18rem" }}>
                   <Card.Img variant="top" src={item.image} />
                   <Card.Body>
                     <Card.Title>{item.name}</Card.Title>
@@ -116,7 +118,7 @@ export default function Filter() {
           })}
         </Row>
       </Container>
-    </div>
+    </body>
   );
 }
 
